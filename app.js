@@ -23,7 +23,12 @@ const server = http.createServer((req, res) => {
   }
 
   if (url === "/message" && method === "POST") {
-    fs.writeFileSync("elo.txt", "JAZDA JAZDA JAZDA");
+    fs.writeFileSync("message.txt", "JAZDA JAZDA JAZDA");
+
+    // Redirect User
+    res.statusCode = 302;
+    res.setHeader("Location", "/dupa");
+    return res.end();
   }
 
   res.write("<p>WHAT'S UP BRO?</p>");
