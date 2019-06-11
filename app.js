@@ -24,17 +24,21 @@ const server = http.createServer((req, res) => {
 
   if (url === "/message" && method === "POST") {
     fs.writeFileSync("message.txt", "JAZDA JAZDA JAZDA");
-
     // Redirect User
     res.statusCode = 302;
-    res.setHeader("Location", "/dupa");
+    res.setHeader("Location", "/data");
+    return res.end();
+  }
+
+  if (url === "/data" && method === "GET") {
+    res.write("<h1>Data has been sent</h1>")
     return res.end();
   }
 
   res.write("<p>WHAT'S UP BRO?</p>");
   res.end();
 
-  console.log(req.headers, req.url, req.method, res.setHeader, res.write);
+  console.log(req.headers, req.url, req.method, req.host);
 });
 
 server.listen(settings.port, settings.hostname, () => {
