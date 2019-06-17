@@ -6,7 +6,7 @@ const newFile = fs.writeFileSync(
   "This is the best note ever! Dont even try to do better, cuz it's not possible"
 );
 
-fs.appendFile("notes.txt", "WOW", () => {
+fs.appendFileSync("notes.txt", "WOW", () => {
   console.log("SAVED");
 });
 
