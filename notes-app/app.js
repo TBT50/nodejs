@@ -1,3 +1,3 @@
-const utils = require("./utils");
+const addNumbers = require("./utils");
 
-console.log(utils());
+console.log(addNumbers(2, 10));

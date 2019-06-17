@@ -1,5 +1,2 @@
-function name() {
-  return console.log("WTF");
-}
-
-module.exports = name;
+const addNumbers = (firstNum, secondNum) => firstNum + secondNum;
+module.exports = addNumbers;
