@@ -1,24 +1,21 @@
-const myNotes = require("./notes");
+const http = require("http");
 
-const validator = require("validator");
 const chalk = require("chalk");
 
-const log = console.log;
-const newColor = log(
-  chalk.green(
-    "I am a green line " +
-      chalk.blue.underline.bold("with a blue substring") +
-      " that becomes green again!"
-  )
-);
-console.log(newColor);
+const server = http.createServer((request, response) => {
+  console.log(chalk.green("SUCCESS, request recieved!"));
+  response.write("<html><head><title>Node app</title></head>");
+  response.write("<body>");
+  response.write("<h1>Welcome</h1>");
+  response.write("</body></html");
+  response.end();
+});
 
-const notes = myNotes();
+const settings = {
+  port: 8080,
+  host: "127.0.0.1"
+};
 
-console.log(notes);
-console.log(validator.isEmail("abc@exa$%le.com"));
-console.log(
-  validator.isURL("https://wsdfdsfsdfww.wsdfdsfsdfp.ppzsdfdsfl.asdasd")
-);
-
-console.log(validator.isPostalCode("11-111", "PL"));
+server.listen(settings.port, settings.host, () => {
+  console.log(chalk.blue("Server ON"));
+});
