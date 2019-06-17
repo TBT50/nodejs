@@ -23,6 +23,11 @@ const server = http.createServer((req, res) => {
   }
 
   if (url === "/message" && method === "POST") {
+    const body = [];
+    req.on("data", chunk => {
+      console.log(chunk);
+      console.log(body.push(chunk));
+    });
     fs.writeFileSync("message.txt", "JAZDA JAZDA JAZDA");
     // Redirect User
     res.statusCode = 302;
@@ -31,7 +36,7 @@ const server = http.createServer((req, res) => {
   }
 
   if (url === "/data" && method === "GET") {
-    res.write("<h1>Data has been sent</h1>")
+    res.write("<h1>Data has been sent</h1>");
     return res.end();
   }
 
