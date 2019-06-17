@@ -6,10 +6,8 @@ fs.writeFileSync(
   "This is the best note ever! Dont even try to do better, cuz it's not possible"
 );
 
-const appendedText = "Node seems to be more interesting that i though";
+const appendedText = "Node seems to be more interesting that i though123";
 
-fs.appendFileSync("notes.txt", appendedText, () => {
-  console.log("SAVED");
-});
+fs.appendFileSync("notes.txt", appendedText);
 
 console.log(typeof fs);
