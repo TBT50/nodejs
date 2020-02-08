@@ -1,9 +1,11 @@
 const http = require("http");
 
-function requestListener(request, response) {
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  response.write("ELO ZIOMKI");
-  response.end();
+function requestListener(req, res) {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.write("Some awesome text");
+  console.log(req.method);
+  console.log(req.headers);
+  res.end();
 }
 
 const server = http.createServer(requestListener);
