@@ -1,15 +1,16 @@
 const http = require("http");
 
-function requestListener(req, res) {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.write("Some awesome text");
-  console.log(req.method);
-  console.log(req.headers);
+const server = http.createServer((req, res) => {
+  if (req.url === "/a") {
+    res.setHeader("Contnet-Type", "text/html");
+    res.write("<h1>MAIN PAGE</h1>");
+    res.write("<a href='/admin'>Admin page</a>");
+    res.write();
+  }
+
   res.end();
-}
+});
 
-const server = http.createServer(requestListener);
-
-server.listen(8080, "localhost", function() {
-  console.log("SERVER IS RUNING");
+server.listen(8080, "localhost", () => {
+  console.log("Server is running");
 });
