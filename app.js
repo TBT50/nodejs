@@ -6,8 +6,15 @@ const hostname = "localhost";
 
 // Create HTTP server
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.write("<h1>Awesome Page</h1>");
+  if (req.url === "/") {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.write("Welcome to the main page");
+  } else if (req.url === "/test") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.write("<h1>Welcome to the test site</h1>");
+  } else {
+    res.write("Something went wrong");
+  }
   res.end();
 });
 
