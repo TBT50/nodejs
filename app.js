@@ -14,12 +14,12 @@ const server = http.createServer((req, res) => {
     res.write("<h1>Welcome to the main page</h1>");
     res.write(
       `<form action='message' method="post">
-        <input type='text' name='dupa'><button type='submit'>Send a message</button>
+        <input type='text' name='message'><button type='submit'>Send a message</button>
       </form>`
     );
   } else if (req.url === "/message" && req.method === "POST") {
     fs.writeFileSync("./note.txt", data);
-    res.writeHead(302, { Location: "/" });
+    res.writeHead(302, { Location: "/jjj" });
     console.log("File written successfully.\n");
     console.log("The written file has the following content:");
     console.log(fs.readFileSync("./note.txt", "utf-8"));
