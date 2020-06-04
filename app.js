@@ -1,8 +1,11 @@
-// Load HTTP module
+// Load modules
 const http = require("http");
+const fs = require("fs");
 
 const port = 8080;
 const hostname = "localhost";
+
+let data = "Lorem ipsum";
 
 // Create HTTP server
 const server = http.createServer((req, res) => {
@@ -10,12 +13,16 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write("<h1>Welcome to the main page</h1>");
     res.write(
-      `<form action='message' method='post'>
-        <input type='text' name='message'><button type='submit'>Send a message</button>
+      `<form action='message' method="post">
+        <input type='text' name='dupa'><button type='submit'>Send a message</button>
       </form>`
     );
-  } else if (req.url === "/message") {
+  } else if (req.url === "/message" && req.method === "POST") {
     res.write("<h1>Messages</h1>");
+    fs.writeFileSync("./note.txt", data);
+    console.log("File written successfully.\n");
+  } else {
+    res.write("<h1>This page does not exist, nothing to do here</h1>");
   }
   res.end();
 });
