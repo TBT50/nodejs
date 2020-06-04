@@ -18,9 +18,11 @@ const server = http.createServer((req, res) => {
       </form>`
     );
   } else if (req.url === "/message" && req.method === "POST") {
-    res.write("<h1>Messages</h1>");
     fs.writeFileSync("./note.txt", data);
+    res.writeHead(302, { Location: "/" });
     console.log("File written successfully.\n");
+    console.log("The written file has the following content:");
+    console.log(fs.readFileSync("./note.txt", "utf-8"));
   } else {
     res.write("<h1>This page does not exist, nothing to do here</h1>");
   }
