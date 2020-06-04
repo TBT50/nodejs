@@ -14,10 +14,26 @@ const server = http.createServer((req, res) => {
     res.write("<h1>Welcome to the main page</h1>");
     res.write(
       `<form action='message' method="post">
-        <input type='text' name='message'><button type='submit'>Send a message</button>
+        <input type='text' name='message'>
+        <input type='text' name='age'>
+        <button type='submit'>Send a message</button>
       </form>`
     );
   } else if (req.url === "/message" && req.method === "POST") {
+    const body = [];
+    req.on("data", (chunk) => {
+      console.log(chunk);
+      body.push(chunk);
+      console.log(body);
+    });
+
+    req.on("end", () => {
+      const parsedBody = Buffer.concat(body).toString();
+      console.log(parsedBody);
+      const message = parsedBody.split("&")[0].split("=")[1];
+      fs.writeFileSync("note.txt", message);
+    });
+
     fs.writeFileSync("./note.txt", data);
     res.writeHead(302, { Location: "/thank-you" });
   } else if (req.url === "/thank-you") {
