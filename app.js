@@ -19,8 +19,11 @@ const server = http.createServer((req, res) => {
     );
   } else if (req.url === "/message" && req.method === "POST") {
     fs.writeFileSync("./note.txt", data);
-    res.writeHead(302, { Location: "/jjj" });
-    console.log("File written successfully.\n");
+    res.writeHead(302, { Location: "/thank-you" });
+  } else if (req.url === "/thank-you") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.write("<h1>The file has been saved</h1>");
+    res.write("<a href='/'>Go to the main page</a>");
     console.log("The written file has the following content:");
     console.log(fs.readFileSync("./note.txt", "utf-8"));
   } else {
