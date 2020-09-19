@@ -20,7 +20,15 @@ let notes = [
 
 app.get("/", (req, res) => {
   res.write("<h1>Main Page</h1>");
+  res.write(
+    "<form action='message' method='POST'><input type='text'><button>SUBMIT</button></form>"
+  );
   res.end();
+});
+
+app.post("/message", (req, res) => {
+  res.write("<h1>The message has been sent</h1>");
+  res.status(400).end();
 });
 
 app.get("/api/notes", (req, res) => {
@@ -28,7 +36,6 @@ app.get("/api/notes", (req, res) => {
 });
 
 app.get("/api/notes/:id", (req, res) => {
-  console.log(req.params);
   const id = Number(req.params.id);
   const note = notes.find((note) => note.id === id);
 
@@ -43,8 +50,7 @@ app.delete("/api/notes/:id", (req, res) => {
   const id = Number(req.params.id);
 
   notes = notes.filter((note) => note.id !== id);
-  console.log(notes);
-  response.status(204).end();
+  res.status(204).end();
 });
 
 app.listen(PORT, () => {
