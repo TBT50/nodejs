@@ -1,53 +1,36 @@
-// Load modules
-const http = require("http");
-const fs = require("fs");
+const express = require("express");
+const app = express();
+const PORT = 8080;
 
-const port = 8080;
-const hostname = "localhost";
+let notes = [
+  {
+    id: 1,
+    content: "Learn italian",
+  },
+  {
+    id: 2,
+    content: "Go for a walk",
+  },
+  {
+    id: 3,
+    content: "Learn dance",
+  },
+];
 
-let data = "Lorem ipsum";
-
-// Create HTTP server
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.write("<h1>Welcome to the main page</h1>");
-    res.write(
-      `<form action='message' method="post">
-        <input type='text' name='message'>
-        <input type='text' name='age'>
-        <button type='submit'>Send a message</button>
-      </form>`
-    );
-  } else if (req.url === "/message" && req.method === "POST") {
-    const body = [];
-    req.on("data", (chunk) => {
-      console.log(chunk);
-      body.push(chunk);
-      console.log(body);
-    });
-
-    req.on("end", () => {
-      const parsedBody = Buffer.concat(body).toString();
-      console.log(parsedBody);
-      const message = parsedBody.split("&")[0].split("=")[1];
-      fs.writeFileSync("note.txt", message);
-    });
-
-    fs.writeFileSync("./note.txt", data);
-    res.writeHead(302, { Location: "/thank-you" });
-  } else if (req.url === "/thank-you") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.write("<h1>The file has been saved</h1>");
-    res.write("<a href='/'>Go to the main page</a>");
-    console.log("The written file has the following content:");
-    console.log(fs.readFileSync("./note.txt", "utf-8"));
-  } else {
-    res.write("<h1>This page does not exist, nothing to do here</h1>");
-  }
+app.get("/", (req, res) => {
+  res.write("<h1>Hey Express, how are you?</h1>");
+  res.write(
+    "<form action='/info' method='POST'><input type='text'><button>Submit</button></form>"
+  );
   res.end();
 });
 
-server.listen(port, hostname, () =>
-  console.log(`Server is running at http://${hostname}:${port}`)
-);
+app.post("/info", (req, res) => {
+  res.send("<h1>THE FORM HAS BEEN SUBMITTED</h1>");
+});
+
+app.get("/api/notes", (req, res) => {
+  res.json(notes);
+});
+
+app.listen(PORT, () => console.log("Server is running"));
