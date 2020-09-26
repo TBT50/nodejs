@@ -1,4 +1,3 @@
-const { response } = require("express");
 const express = require("express");
 const app = express();
 const PORT = 8080;
@@ -54,5 +53,5 @@ app.delete("/api/notes/:id", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("Server is running!!!");
+  console.log(`Visit http://localhost:${PORT}`);
 });
