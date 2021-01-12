@@ -1,2 +1,7 @@
 /node_modules
+/notes-app/node_modules
+/trello/node_modules
+.idea
+copy.js
 test.js
+index.html
