@@ -4,12 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "node app.js"
-=======
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js"
->>>>>>> b79f6d8e6cc7059f000ed463678e5e102267a529
   },
   "repository": {
     "type": "git",
@@ -24,11 +20,8 @@
   "homepage": "https://github.com/TBT50/nodejs#readme",
   "dependencies": {
     "express": "^4.17.1"
-<<<<<<< HEAD
-=======
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
->>>>>>> b79f6d8e6cc7059f000ed463678e5e102267a529
   }
 }
