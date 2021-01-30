@@ -5,6 +5,8 @@ const path = require("path");
 
 const app = express();
 
+const port = process.env.PORT || 8000;
+
 const indexRoutes = require("./routes/index");
 const addProductData = require("./routes/add-product");
 const errorRoutes = require("./routes/error");
@@ -20,4 +22,4 @@ app.use(indexRoutes);
 app.use(addProductData.routes);
 app.use(errorRoutes);
 
-app.listen(8000);
+app.listen(port);
