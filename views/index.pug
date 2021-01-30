@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+  include head/head.pug
+  title #{docTitle}
+  body
+    header.page-header
+      nav(class="page-nav container")
+        ul.page-nav__list
+          li: a(href="/" class="page-nav__link") Home
+          li: a(href="/add-product" class="page-nav__link") Add Product
+    main
+      section.container
+        h1 My products (homepage)
+        ul
+          each item in products
+            li= item.title
