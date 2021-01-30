@@ -10,7 +10,15 @@ html(lang="en")
           li: a(href="/add-product" class="page-nav__link") Add Product
     main
       section.container
-        h1 My products (homepage)
-        ul
-          each item in products
-            li= item.title
+        if products.length > 0
+          h1 My products (homepage)
+          table
+              tr
+                th Title
+                th Author
+              each item in products
+                tr
+                  td: p= item.title
+                  td: p= item.author
+        else 
+          h1 No Products

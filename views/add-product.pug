@@ -8,8 +8,13 @@ html(lang="en")
         ul.page-nav__list
           li: a(href="/" class="page-nav__link") Home
     main
-      div.container
-        form(action='/product' method='POST')
-          input(type="text" name="title")
-          input(type="text" name="age")
-          button(type="submit") SUBMIT
+      section.container
+        h1 Add Product
+        form(action='/product' method='POST' class="product-form")
+          div
+            label(for="title" class="product-form__label") Title
+            input(type="text" name="title" id="title" class="product-form__input" required)
+          div
+            label(for="author" class="product-form__label") Author
+            input(type="text" name="author" id="author" class="product-form__input" required)
+          button(type="submit" class="btn") SUBMIT
