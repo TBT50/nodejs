@@ -3,22 +3,21 @@ html(lang="en")
   include head/head.pug
   title #{docTitle}
   body
-    header.page-header
-      nav(class="page-nav container")
-        ul.page-nav__list
-          li: a(href="/" class="page-nav__link") Home
-          li: a(href="/add-product" class="page-nav__link") Add Product
+    header(class="page-header")
+      div(class="container")
+        nav(class="page-nav")
+          ul.page-nav__list
+            li: a(href="/" class="page-nav__link") Home
+            li: a(href="/add-product" class="page-nav__link") Add Product
+            li: a(href="/auth/google" class="page-nav__link") Login
     main
       section.container
         if products.length > 0
           h1 My products (homepage)
-          table
-              tr
-                th Title
-                th Author
-              each item in products
-                tr
-                  td: p= item.title
-                  td: p= item.author
+          ul(class="product-list")
+            each item in products
+              li(class="product-list__item") 
+                span #{item.title}
+                span #{item.author}
         else 
           h1 No Products
